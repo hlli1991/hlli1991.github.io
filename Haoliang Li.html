@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haoliang Li — City University of Hong Kong</title>
+<meta name="description" content="Haoliang Li, Associate Professor, Department of Electrical Engineering, City University of Hong Kong. Research on AI security, multimedia forensics, and machine learning.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff;
+    --bg-soft:#fafafa;
+    --text:#1a1a1a;
+    --text-soft:#545454;
+    --text-faint:#8a8a8a;
+    --border:#e4e4e4;
+    --border-strong:#d0d0d0;
+    --accent:#2b5d8a;
+    --accent-soft:#eef3f8;
+    --accent-hover:#1c4264;
+    --radius:8px;
+    --maxw:860px;
+    --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
+  }
+  [data-theme="dark"]{
+    --bg:#141414;
+    --bg-soft:#1a1a1a;
+    --text:#e8e8e8;
+    --text-soft:#aaaaaa;
+    --text-faint:#777777;
+    --border:#2a2a2a;
+    --border-strong:#383838;
+    --accent:#7faed4;
+    --accent-soft:#1d2832;
+    --accent-hover:#9fc4e0;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:var(--bg);color:var(--text);
+    line-height:1.7;font-size:15.5px;
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease;
+  }
+  a{color:var(--accent);text-decoration:none;transition:color .15s ease}
+  a:hover{color:var(--accent-hover);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+  /* ---------- NAV ---------- */
+  nav.top{
+    position:sticky;top:0;z-index:50;
+    background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:saturate(160%) blur(10px);
+    -webkit-backdrop-filter:saturate(160%) blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;height:58px}
+  .brand{font-weight:600;font-size:.98rem;letter-spacing:-.01em}
+  .nav-right{display:flex;align-items:center;gap:4px}
+  .nav-right a{color:var(--text-soft);font-weight:500;font-size:.9rem;padding:6px 12px;border-radius:6px}
+  .nav-right a:hover{color:var(--text);text-decoration:none;background:var(--accent-soft)}
+  .theme-btn{
+    margin-left:6px;border:1px solid var(--border);background:var(--bg);
+    width:34px;height:34px;border-radius:6px;cursor:pointer;color:var(--text-soft);
+    display:grid;place-items:center;transition:all .2s ease;
+  }
+  .theme-btn:hover{border-color:var(--border-strong);color:var(--text)}
+  .theme-btn svg{width:16px;height:16px}
+  [data-theme="light"] .icon-moon{display:none}
+  [data-theme="dark"] .icon-sun{display:none}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:72px 0 56px;border-bottom:1px solid var(--border)}
+  .hero-grid{display:grid;grid-template-columns:1fr 220px;gap:56px;align-items:start}
+  .eyebrow{font-size:.82rem;font-weight:500;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  h1.name{
+    font-family:'Lora',Georgia,serif;font-weight:600;
+    font-size:2.6rem;letter-spacing:-.015em;line-height:1.1;
+    color:var(--text);margin-bottom:8px;
+  }
+  .role{font-size:1.05rem;color:var(--text-soft);margin-bottom:24px;font-weight:400}
+  .bio{color:var(--text);font-size:.98rem;margin-bottom:14px;max-width:62ch}
+  .bio a{font-weight:500}
+  .email{font-family:var(--mono);font-size:.88rem;color:var(--text);margin:22px 0 20px}
+  .links{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}
+  .links a{font-size:.92rem;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+  .links a svg{width:14px;height:14px;opacity:.7}
+
+  /* circular photo — clean, static */
+  .photo-wrap{display:flex;justify-content:center}
+  .photo-wrap img{
+    width:200px;height:200px;border-radius:50%;object-fit:cover;
+    border:1px solid var(--border-strong);
+    box-shadow:0 1px 3px rgba(0,0,0,.06);
+    background:var(--bg-soft);
+  }
+
+  /* ---------- SECTION ---------- */
+  section{padding:48px 0;border-bottom:1px solid var(--border)}
+  section:last-of-type{border-bottom:none}
+  h2.sec{
+    font-size:1.15rem;font-weight:600;letter-spacing:-.01em;
+    color:var(--text);margin-bottom:18px;
+  }
+  .sec-text{color:var(--text);font-size:.98rem;max-width:68ch}
+  .sec-text strong{font-weight:600}
+
+  .services{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:4px}
+  .svc-block h4{font-size:.78rem;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+  .svc-list{list-style:none}
+  .svc-list li{color:var(--text);font-size:.95rem;padding:3px 0}
+  .svc-list li .venue{color:var(--text-soft)}
+
+  /* ---------- PUBLICATIONS ---------- */
+  .pub-controls{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-bottom:6px}
+  .flabel{font-size:.78rem;font-weight:600;color:var(--text-faint);text-transform:uppercase;letter-spacing:.05em;margin-right:8px}
+  .fbtn{
+    font-family:inherit;font-size:.84rem;font-weight:500;padding:4px 12px;border-radius:999px;cursor:pointer;
+    background:var(--bg);border:1px solid var(--border);color:var(--text-soft);
+    transition:all .15s ease;display:inline-flex;align-items:center;gap:6px;line-height:1.4;
+  }
+  .fbtn .cnt{font-size:.74rem;color:var(--text-faint)}
+  .fbtn:hover{border-color:var(--border-strong);color:var(--text)}
+  .fbtn.active{background:var(--text);color:var(--bg);border-color:var(--text)}
+  .fbtn.active .cnt{color:var(--bg);opacity:.6}
+
+  .year-block{margin-top:32px}
+  .year-block:first-of-type{margin-top:20px}
+  .year-head{
+    display:flex;align-items:baseline;gap:12px;margin-bottom:8px;
+  }
+  .year-num{
+    font-family:'Lora',serif;font-size:1.15rem;font-weight:600;color:var(--text);
+    font-feature-settings:"lnum";
+  }
+  .year-rule{flex:1;height:1px;background:var(--border)}
+
+  .pub{
+    padding:14px 0;border-bottom:1px solid var(--border);
+    display:grid;grid-template-columns:1fr;gap:2px;
+  }
+  .pub:last-child{border-bottom:none}
+  .pub-title{font-size:.96rem;font-weight:500;color:var(--text);line-height:1.45;margin-bottom:3px}
+  .pub-authors{font-size:.9rem;color:var(--text-soft);line-height:1.5}
+  .pub-authors .me{color:var(--text);font-weight:600}
+  .pub-meta{font-size:.88rem;color:var(--text-faint);display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:4px}
+  .pub-venue em{font-style:italic;color:var(--text-soft)}
+  .tag{font-size:.74rem;color:var(--text-faint);border:1px solid var(--border);border-radius:4px;padding:1px 6px;font-weight:500}
+  .pub-links{display:inline-flex;gap:12px;margin-left:0}
+  .pub-links a{font-size:.86rem;font-weight:500}
+  .pub-note{font-size:.84rem;color:var(--text-faint)}
+  .empty{padding:30px 0;color:var(--text-faint);font-size:.9rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{padding:36px 0 48px;text-align:left}
+  footer .container{color:var(--text-faint);font-size:.86rem}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media(max-width:680px){
+    .hero-grid{grid-template-columns:1fr;gap:36px}
+    .photo-wrap{justify-content:flex-start}
+    .photo-wrap img{width:160px;height:160px}
+    .nav-right a:not(.theme-btn){display:none}
+    .services{grid-template-columns:1fr;gap:24px}
+    h1.name{font-size:2.1rem}
+  }
+</style>
+</head>
+<body>
+
+<nav class="top">
+  <div class="container nav-inner">
+    <div class="brand">Haoliang Li</div>
+    <div class="nav-right">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#services">Services</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="about">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Associate Professor</div>
+      <h1 class="name">Haoliang Li</h1>
+      <div class="role">Department of Electrical Engineering, City University of Hong Kong</div>
+      <p class="bio">
+        I am an associate professor at the
+        <a href="https://www.ee.cityu.edu.hk/department-ee" target="_blank" rel="noopener">Department of Electrical Engineering</a>,
+        City University of Hong Kong. Previously I was a Wallenberg–NTU Presidential Postdoc Fellow in the
+        Rapid-Rich Object Search Lab at Nanyang Technological University. I received my Ph.D. from NTU Singapore,
+        supervised by <a href="http://www.ntu.edu.sg/home/eackot/index.html" target="_blank" rel="noopener">Prof. Alex C. Kot</a>.
+      </p>
+      <p class="bio">
+        My research interests lie in <strong>AI security, multimedia forensics, and machine learning</strong>,
+        with a current focus on fake-news detection, trustworthiness of large language models, transfer / domain
+        generalization, and applications in AI4S, healthcare, and circuit design.
+      </p>
+      <div class="email">haoliang.li&nbsp;[at]&nbsp;cityu.edu.hk</div>
+      <div class="links">
+        <a href="https://scholar.google.com/citations?user=1xioat8AAAAJ&hl=zh-CN" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a7 7 0 1 0 0 14 7 7 0 0 0 0-14zM12 0 0 9.5l4.8 3.5L12 7l7.2 6L24 9.5z" fill="currentColor" stroke="none"/></svg>
+          Google Scholar
+        </a>
+        <a href="mailto:haoliang.li@cityu.edu.hk">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
+          Email
+        </a>
+        <a href="https://www.ee.cityu.edu.hk/department-ee" target="_blank" rel="noopener">
+          Department
+        </a>
+      </div>
+    </div>
+    <div class="photo-wrap">
+      <img src="Haoliang Li_files/haoliang.jpg" alt="Haoliang Li">
+    </div>
+  </div>
+</header>
+
+<section id="research">
+  <div class="container">
+    <h2 class="sec">Research</h2>
+    <p class="sec-text">
+      I work on <strong>AI security, multimedia forensics, and machine learning</strong>. My current research
+      centers on fake-news detection, the trustworthiness of large language models, transfer learning and domain
+      generalization, test-time adaptation, as well as applied AI4S in healthcare, circuit design, and signature
+      methods for sequential data and computational imaging.
+    </p>
+  </div>
+</section>
+
+<section id="services">
+  <div class="container">
+    <h2 class="sec">Professional Service</h2>
+    <div class="services">
+      <div class="svc-block">
+        <h4>Editorial</h4>
+        <ul class="svc-list">
+          <li>Associate Editor — <span class="venue">IEEE Transactions on Information Forensics and Security</span></li>
+          <li>Associate Editor — <span class="venue">IEEE Transactions on Circuits and Systems for Video Technology</span></li>
+          <li>Action Editor — <span class="venue">Transactions on Machine Learning Research</span></li>
+        </ul>
+      </div>
+      <div class="svc-block">
+        <h4>Area Chair</h4>
+        <ul class="svc-list">
+          <li>NeurIPS · ICLR · ICML</li>
+          <li>CVPR · ICASSP</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="container">
+    <h2 class="sec">Selected Publications</h2>
+    <div class="pub-controls" id="filterBar">
+      <span class="flabel">Topic</span>
+    </div>
+    <div id="pubs"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    © <span id="yr"></span> Haoliang Li · Department of Electrical Engineering, City University of Hong Kong
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- Theme ---------- */
+const root = document.documentElement;
+const tBtn = document.getElementById('themeBtn');
+const saved = localStorage.getItem('hl-theme');
+if (saved) root.setAttribute('data-theme', saved);
+else if (window.matchMedia('(prefers-color-scheme:dark)').matches) root.setAttribute('data-theme','dark');
+tBtn.addEventListener('click', ()=>{
+  const next = root.getAttribute('data-theme')==='dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('hl-theme', next);
+});
+
+/* ---------- Topics ---------- */
+const TOPICS = [
+  {k:'llm',       label:'LLM & NLP'},
+  {k:'forensics', label:'Forensics & Security'},
+  {k:'fas',       label:'Face Anti-Spoofing'},
+  {k:'dg',        label:'Domain Generalization'},
+  {k:'medical',   label:'Medical AI'},
+  {k:'seq',       label:'Sequential Data & CDE'},
+  {k:'vision',    label:'Vision & Multimedia'},
+  {k:'ai4s',      label:'AI4S & Applications'},
+];
+const labelOf = k => (TOPICS.find(t=>t.k===k)||{}).label || k;
+
+/* ---------- Publications ---------- */
+const PUBS = [
+  /* ===== 2026 ===== */
+  {y:2026,topic:'ai4s',t:'Meteorology-Driven Self-Correcting LLM Priors for Smart Grid Outage Prediction and Bayesian Fault-Chain Risk Analysis',
+   a:'Tong Li, Zhao Yang Dong, Zuqing Zheng, Yuechuan Tao, Haoliang Li, Hongjun Gao, Zuliang Huang, and Shuying Lai',v:'IEEE Transactions on Consumer Electronics'},
+  {y:2026,topic:'llm',t:'Beyond Confidence: Adaptive and Coherent Decoding for Diffusion Language Models',
+   a:'Kecheng Chen, Ziru Liu, Xijia Tao, Hui Liu, Xinyu Fu, Suiyun Zhang, Dandan Tu, Lingpeng Kong, Rui Liu, and Haoliang Li',v:'ICML'},
+  {y:2026,topic:'llm',t:'Unbiased Alignment for Large Language Models with Noisy Preferences',
+   a:'Jialiang Wang, Xianming Liu, Xiong Zhou, Hui Liu, and Haoliang Li',v:'ICML'},
+  {y:2026,topic:'llm',t:'Task-Aware LLM Routing with Multi-Level Task-Profile-Guided Data Synthesis for Cold-Start Scenarios',
+   a:'Hui Liu, Bin Zou, Kecheng Chen, Jie Liu, Wenya Wang, and Haoliang Li',v:'ACL'},
+  {y:2026,topic:'llm',t:'Domain-Specific Data Generation Framework for RAG Adaptation',
+   a:'Chris Xing Tian, Weihao Xie, Zhen Chen, Hui Liu, Zhengyuan Yi, Haoliang Li, Shiqi Wang and Siwei Ma',v:'Findings of ACL'},
+  {y:2026,topic:'forensics',t:'Propose and Rectify: A Forensics-Driven MLLM Framework for Image Manipulation Localization',
+   a:'Keyang Zhang, Chenqi Kong, Hui Liu, Bo Ding, Xinghao Jiang and Haoliang Li',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2026,topic:'vision',t:'Beyond Heuristic Prompting: A Concept-Guided Bayesian Framework for Zero-Shot Image Recognition',
+   a:'Hui Liu, Kecheng Chen, Jialiang Wang, Xianming Liu, Wenya Wang and Haoliang Li',v:'CVPR'},
+  {y:2026,topic:'forensics',t:'Generalizable Dynamic Representation Learning for Source Identification in Sequential Data',
+   a:'Bo Ding, Tiexin Qin, Renjie Wan and Haoliang Li',v:'IEEE Transactions on Knowledge and Data Engineering'},
+  {y:2026,topic:'forensics',t:'Dynamically Perceived Forgery Conditional Diffusion Model for Scientific Image Tampering Localization',
+   a:'Jialing Xu, Peisong He, Haoliang Li, Shiqi Wang, Yi Zhang, and Xinghao Jiang',v:'IEEE Transactions on Circuits and Systems for Video Technology'},
+  {y:2026,topic:'dg',t:'Variation-Bounded Loss for Noise-Tolerant Learning',
+   a:'Jialiang Wang, Xiong Zhou, Xianming Liu, Gangfeng Hu, Deming Zhai, Junjun Jiang, and Haoliang Li',v:'AAAI'},
+
+  /* ===== 2025 ===== */
+  {y:2025,topic:'seq',t:'Learning Dynamic Graph Embeddings with Neural Controlled Differential Equations',
+   a:'Tiexin Qin, Benjamin Walker, Terry Lyons, Hong Yan and Haoliang Li',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2025,topic:'llm',t:'Large Language Models for Lossless Image Compression: Next-Pixel Prediction in Language Space is All You Need',
+   a:'Kecheng Chen, Pingping Zhang, Hui Liu, Jie Liu, Yibing Liu, Jiaxin Huang, Shiqi Wang, Hong Yan, and Haoliang Li',v:'NeurIPS'},
+  {y:2025,topic:'dg',t:'SPACE: SPike-Aware Consistency Enhancement for Test-Time Adaptation in Spiking Neural Networks',
+   a:'Xinyu Luo, Kecheng Chen, Pao-Sheng Vincent Sun, Chris Xing Tian, Arindam Basu, and Haoliang Li',v:'NeurIPS'},
+  {y:2025,topic:'medical',t:'MedChain: Bridging the Gap Between LLM Agents and Clinical Practice with Interactive Sequence',
+   a:'Jie Liu, Wenxuan Wang, Zizhan Ma, Guolin Huang, Yihang Su, Kao-Jung Chang, Wenting Chen, Haoliang Li, Linlin Shen, and Michael Lyu',v:'NeurIPS',h:'Spotlight'},
+  {y:2025,topic:'forensics',t:'MoE-FFD: Mixture of Experts for Generalized and Parameter-Efficient Face Forgery Detection',
+   a:'Chenqi Kong, Anwei Luo, Peijun Bao, Yi Yu, Haoliang Li, Zengwei Zheng, Shiqi Wang, Alex C. Kot',v:'IEEE Transactions on Dependable and Secure Computing'},
+  {y:2025,topic:'medical',t:'Test-time Adaptation for Foundation Medical Segmentation Model Without Parametric Updates',
+   a:'Kecheng Chen, Xinyu Luo, Tiexin Qin, Jie Liu, Hui Liu, Victor Ho Fun Lee, Hong Yan, Haoliang Li',v:'ICCV',h:'Highlight',
+   l:[{l:'Project',u:'https://tonyckc.github.io/Test-time-Adaptation-for-Foundation-Medical-Segmentation-Model-Without-Parametric-Updates/'}]},
+  {y:2025,topic:'forensics',t:'Temporal Unlearnable Examples: Preventing Personal Video Data from Unauthorized Exploitation by Object Tracking',
+   a:'Qiangqiang Wu, Yi Yu, Chenqi Kong, Ziquan Liu, Jia Wan, Haoliang Li, Alex C. Kot, Antoni B. Chan',v:'ICCV'},
+  {y:2025,topic:'seq',t:'Generalizing to New Dynamical Systems via Frequency Domain Adaptation',
+   a:'Tiexin Qin, Hong Yan and Haoliang Li',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2025,topic:'llm',t:'Unraveling the Mechanics of Learning-Based Demonstration Selection for In-Context Learning',
+   a:'Hui Liu, Wenya Wang, Hao Sun, Chris Xing Tian, Chenqi Kong, Xin Dong, and Haoliang Li',v:'ACL',h:'Oral'},
+  {y:2025,topic:'forensics',t:'Image Provenance Analysis via Graph Encoding with Vision Transformer',
+   a:'Keyang Zhang, Chenqi Kong, Shiqi Wang, Anderson Rocha, and Haoliang Li',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2025,topic:'medical',t:'Q-PART: Quasi-Periodic Adaptive Regression with Test-time Training for Pediatric Left Ventricular Ejection Fraction Regression',
+   a:'Jie Liu, Tiexin Qin, Hui Liu, Yilei Shi, Lichao Mou, Xiao Xiang Zhu, Shiqi Wang, and Haoliang Li',v:'CVPR'},
+  {y:2025,topic:'forensics',t:'The NeRF Signature: Codebook-Aided Watermarking for Neural Radiance Fields',
+   a:'Ziyuan Luo, Anderson Rocha, Boxin Shi, Qing Guo, Haoliang Li, and Renjie Wan',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2025,topic:'forensics',t:'Towards Extensible Detection of AI-generated Images via Content-Agnostic Adapter-based Category-Aware Incremental Learning',
+   a:'Shuai Tang, Peisong He, Haoliang Li, Wei Wang, Xinghao Jiang, and Yao Zhao',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2025,topic:'forensics',t:'Pixel-Inconsistency Modeling for Image Manipulation Localization',
+   a:'Chenqi Kong, Anwei Luo, Shiqi Wang, Haoliang Li, Anderson Rocha, and Alex C. Kot',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2025,topic:'seq',t:'Deep Signature: Characterization of Large-Scale Molecular Dynamics',
+   a:'Tiexin Qin, Mengxu Zhu, Chunyang Li, Terry Lyons, Hong Yan, and Haoliang Li',v:'ICLR'},
+  {y:2025,topic:'dg',t:'Test-time Adaptation for Image Compression with Distribution Regularization',
+   a:'Kecheng Chen, Pingping Zhang, Tiexin Qin, Shiqi Wang, Hong Yan, and Haoliang Li',v:'ICLR',
+   l:[{l:'Project',u:'https://tonyckc.github.io/TTA-IC-DR/'}]},
+  {y:2025,topic:'seq',t:'Generalized Time Series Classification via Component Decomposition and Alignment',
+   a:'Yichuan Cheng, Darrick Lee, Harald Oberhauser, and Haoliang Li',v:'IEEE Transactions on Big Data'},
+  {y:2025,topic:'ai4s',t:'Efficient Nonlinear Function Approximation in Analog Resistive Crossbars for Recurrent Neural Networks',
+   a:'Junyi Yang, Ruibin Mao, Mingrui Jiang, Yichuan Cheng, Pao-Sheng Vincent Sun, Shuai Dong, Giacomo Pedretti, Xia Sheng, Jim Ignowski, Haoliang Li, Can Li, Arindam Basu',v:'Nature Communications'},
+
+  /* ===== 2024 ===== */
+  {y:2024,topic:'forensics',t:'Temporal Diversified Self-Contrastive Learning for Generalized Face Forgery Detection',
+   a:'Rongchuan Zhang, Peisong He, Haoliang Li, Shiqi Wang, and Yun Cao',v:'IEEE Transactions on Circuits and Systems for Video Technology'},
+  {y:2024,topic:'fas',t:'Towards Data-Centric Face Anti-spoofing: Improving Cross-Domain Generalization via Physics-Based Data Synthesis',
+   a:'Rizhao Cai, Cecelia Soh, Zitong Yu, Haoliang Li, Wenhan Yang, and Alex C. Kot',v:'International Journal of Computer Vision'},
+  {y:2024,topic:'vision',t:'An Implicit Solution to Electromagnetic Inverse Scattering Problems',
+   a:'Ziyuan Luo, Boxin Shi, Haoliang Li and Renjie Wan',v:'ECCV'},
+  {y:2024,topic:'forensics',t:'Event Trojan: Asynchronous Event-based Backdoor Attacks',
+   a:'Ruofei Wang, Qing Guo, Haoliang Li and Renjie Wan',v:'ECCV'},
+  {y:2024,topic:'medical',t:'Unsupervised Domain Adaptation for Low-dose CT Reconstruction via Bayesian Uncertainty Alignment',
+   a:'Kecheng Chen, Jie Liu, Renjie Wan, Victor Ho-Fun Lee, Varut Vardhanabhuti, Hong Yan, and Haoliang Li',v:'IEEE Transactions on Neural Networks and Learning Systems',
+   l:[{l:'Project',u:'https://tonyckc.github.io/UDA-BUA/'}]},
+  {y:2024,topic:'dg',t:'Generalization Beyond Feature Alignment: Concept Activation-Guided Contrastive Learning',
+   a:'Yibing Liu, Chris Xing Tian, Haoliang Li, and Shiqi Wang',v:'IEEE Transactions on Image Processing'},
+  {y:2024,topic:'forensics',t:'Multi-teacher Universal Distillation Based on Information Hiding for Defense Against Facial Manipulation',
+   a:'Xin Li, Rongrong Ni, Yao Zhao, Yu Ni, Haoliang Li',v:'International Journal of Computer Vision'},
+  {y:2024,topic:'fas',t:'S-Adapter: Generalizing Vision Transformer for Face Anti-Spoofing with Statistical Tokens',
+   a:'Rizhao Cai, Zitong Yu, Chenqi Kong, Haoliang Li, Changsheng Chen, Yongjian Hu, Alex C. Kot',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2024,topic:'medical',t:'Universal and Extensible Language-Vision Models for Organ Segmentation and Tumor Detection from Abdominal Computed Tomography',
+   a:'Jie Liu, Yixiao Zhang, Kang Wang, Mehmet Can Yavuz, Xiaoxi Chen, Yixuan Yuan, Haoliang Li, Yang Yang, Alan Yuille, Yucheng Tang, Zongwei Zhou',v:'Medical Image Analysis'},
+  {y:2024,topic:'llm',t:'TELLER: A Trustworthy Framework for Explainable, Generalizable and Controllable Fake News Detection',
+   a:'Hui Liu, Wenya Wang, Haoru Li, Haoliang Li',v:'Findings of ACL'},
+  {y:2024,topic:'seq',t:'Log Neural Controlled Differential Equations: The Lie Brackets Make A Difference',
+   a:'Benjamin Walker, Andrew Donald McLeod, Tiexin Qin, Yichuan Cheng, Haoliang Li, Terry Lyons',v:'ICML'},
+  {y:2024,topic:'fas',t:'M3FAS: An Accurate and Robust MultiModal Mobile Face Anti-Spoofing System',
+   a:'Chenqi Kong, Kexin Zheng, Yibing Liu, Shiqi Wang, Anderson Rocha, and Haoliang Li',v:'IEEE Transactions on Dependable and Secure Computing'},
+  {y:2024,topic:'forensics',t:'Gradient-Congruity Guided Federated Sparse Training',
+   a:'Chris Xing Tian, Yibing Liu, Haoliang Li, Ray C.C. Cheung, and Shiqi Wang',v:'Privacy Regulation and Protection in Machine Learning Workshop, ICLR'},
+  {y:2024,topic:'medical',t:'Learning Robust Shape Regularization for Generalizable Medical Image Segmentation',
+   a:'Kecheng Chen, Tiexin Qin, Victor Ho-Fun Lee, Hong Yan, and Haoliang Li',v:'IEEE Transactions on Medical Imaging',
+   l:[{l:'Project',u:'https://tonyckc.github.io/WT-PSE/'}]},
+  {y:2024,topic:'dg',t:'Domain Generalization with Small Data',
+   a:'Kecheng Chen, Elena Gal, Hong Yan, and Haoliang Li',v:'International Journal of Computer Vision',
+   l:[{l:'Project',u:'https://tonyckc.github.io/SDDG/'}]},
+  {y:2024,topic:'dg',t:'Neuron Activation Coverage: Rethinking Out-of-distribution Detection and Generalization',
+   a:'Yibing Liu, Chris Xing Tian, Haoliang Li, Lei Ma, and Shiqi Wang',v:'ICLR',h:'Spotlight',
+   l:[{l:'Code',u:'https://github.com/BierOne/ood_coverage'}]},
+  {y:2024,topic:'dg',t:'Target-agnostic Source-free Domain Adaptation for Regression Tasks',
+   a:'Tianlang He, Zhiqiu Xia, Jierun Chen, Haoliang Li, and S.-H. Gary Chan',v:'ICDE'},
+
+  /* ===== 2023 ===== */
+  {y:2023,topic:'llm',t:'Robust Domain Misinformation Detection via Multi-modal Feature Alignment',
+   a:'Hui Liu, Wenya Wang, Hao Sun, Anderson Rocha, and Haoliang Li',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2023,topic:'dg',t:'Evolving Domain Generalization via Latent Structure-Aware Sequential Autoencoder',
+   a:'Tiexin Qin, Shiqi Wang and Haoliang Li',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2023,topic:'dg',t:'Privacy-Preserving Constrained Domain Generalization via Gradient Alignment',
+   a:'Chris Xing Tian, Haoliang Li, Yufei Wang and Shiqi Wang',v:'IEEE Transactions on Knowledge and Data Engineering'},
+  {y:2023,topic:'ai4s',t:'Hierarchical Information Enhanced Traffic Forecasting',
+   a:'Qian Ma, Zijian Zhang, Xiangyu Zhao, Haoliang Li, Hongwei Zhao, Yiqi Wang, Zitao Liu and Wanyu Wang',v:'CIKM'},
+  {y:2023,topic:'fas',t:'Rehearsal-Free Domain Continual Face Anti-Spoofing: Generalize More and Forget Less',
+   a:'Rizhao Cai, Yawen Cui, Zhi Li, Zitong Yu, Haoliang Li, Yongjian Hu, Alex C. Kot',v:'ICCV',h:'Oral'},
+  {y:2023,topic:'dg',t:'Cross-Domain Object Classification Via Successive Subspace Alignment',
+   a:'Kecheng Chen, Haoliang Li, Hong Yan',v:'ICASSP'},
+  {y:2023,topic:'forensics',t:'Two-Branch Multi-Scale Deep Neural Network for Generalized Document Recapture Attack Detection',
+   a:'Jiaxing Li, Chenqi Kong, Shiqi Wang, Haoliang Li',v:'ICASSP'},
+  {y:2023,topic:'llm',t:'Interpretable Multimodal Misinformation Detection with Logic Reasoning',
+   a:'Hui Liu, Wenya Wang, Haoliang Li',v:'Findings of ACL'},
+  {y:2023,topic:'dg',t:'Temporal Coherent Test Time Optimization for Robust Video Classification',
+   a:'Chenyu Yi, Siyuan Yang, Yufei Wang, Haoliang Li, Yap-peng Tan, Alex Kot',v:'ICLR'},
+  {y:2023,topic:'vision',t:'Disentangled Feature Representation for Few-shot Image Classification',
+   a:'Hao Cheng, Yufei Wang, Haoliang Li, Alex C. Kot, Bihan Wen',v:'IEEE Transactions on Neural Networks and Learning Systems'},
+
+  /* ===== 2022 ===== */
+  {y:2022,topic:'vision',t:'Dynamic Expert-Knowledge Ensemble for Generalizable Video Quality Assessment',
+   a:'Pengfei Chen, Leida Li, Haoliang Li, Jinjian Wu, Weisheng Dong, Guangming Shi',v:'IEEE Transactions on Circuits and Systems for Video Technology'},
+  {y:2022,topic:'dg',t:'Towards Domain Generalized Pruning by Scoring Out-of-Distribution Importance',
+   a:'Rizhao Cai, Haoliang Li, Alex C. Kot',v:'NeurIPS Workshop on Distribution Shifts'},
+  {y:2022,topic:'llm',t:'Towards Multi-Modal Sarcasm Detection via Hierarchical Congruity Modeling with Knowledge Enhancement',
+   a:'Hui Liu, Wenya Wang, Haoliang Li',v:'EMNLP',h:'Long Paper',
+   l:[{l:'Code',u:'https://github.com/less-and-less-bugs/HKEmodel'}]},
+  {y:2022,topic:'fas',t:'Beyond the Pixel World: A Novel Acoustic-based Face Anti-Spoofing System for Smartphones',
+   a:'Chenqi Kong, Kexin Zhang, Shiqi Wang, Anderson Rocha, Haoliang Li',v:'IEEE Transactions on Information Forensics and Security',
+   l:[{l:'Code',u:'https://github.com/ChenqiKONG/EchoFAS'}]},
+  {y:2022,topic:'dg',t:'Domain-invariant Feature Exploration for Domain Generalization',
+   a:'Wang Lu, Jindong Wang, Haoliang Li, Yiqiang Chen, Xing Xie',v:'Transactions on Machine Learning Research',
+   l:[{l:'OpenReview',u:'https://openreview.net/forum?id=0xENE7HiYm'}]},
+  {y:2022,topic:'dg',t:'Variational Disentanglement for Domain Generalization',
+   a:'Yufei Wang, Haoliang Li, Hao Cheng, Bihan Wen, Lap-Pui Chau, Alex Kot',v:'Transactions on Machine Learning Research',
+   l:[{l:'OpenReview',u:'https://openreview.net/forum?id=fudOtITMIZ'}]},
+  {y:2022,topic:'dg',t:'Generalizing to Evolving Domains with Latent Structure-Aware Sequential Autoencoder',
+   a:'Tiexin Qin, Shiqi Wang, Haoliang Li',v:'ICML',
+   l:[{l:'Code',u:'https://github.com/WonderSeven/LSSAE'}]},
+  {y:2022,topic:'llm',t:'Rethinking Attention-Model Explainability through Faithfulness Violation Test',
+   a:'Yibing Liu, Haoliang Li, Yangyang Guo, Chenqi Kong, Jing Li, Shiqi Wang',v:'ICML',
+   l:[{l:'Code',u:'https://github.com/BierOne/Attention-Faithfulness'}]},
+  {y:2022,topic:'fas',t:'One-Class Knowledge Distillation for Face Presentation Attack Detection',
+   a:'Zhi Li, Rizhao Cai, Haoliang Li, Kwok-Yan Lam, Yongjian Hu, Alex C. Kot',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2022,topic:'vision',t:'Benchmarking Single-Image Reflection Removal Algorithms',
+   a:'Renjie Wan, Boxin Shi, Haoliang Li, Yuchen Hong, Lingyu Duan, Alex C. Kot',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence',
+   l:[{l:'Project',u:'https://sir2data.github.io/'}]},
+  {y:2022,topic:'forensics',t:'Detect and Locate: Exposing Face Manipulation by Semantic- and Noise-level Telltales',
+   a:'Chenqi Kong, Baoliang Chen, Haoliang Li, Shiqi Wang, Anderson Rocha, Sam Kwong',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2022,topic:'dg',t:'Neuron Coverage-Guided Domain Generalization',
+   a:'Chris Xing Tian, Haoliang Li, Xiaofei Xie, Yang Liu, Shiqi Wang',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2022,topic:'fas',t:'Learning Meta Pattern for Face Anti-Spoofing',
+   a:'Rizhao Cai, Zhi Li, Renjie Wan, Haoliang Li, Yongjian Hu, Alex C. Kot',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2022,topic:'vision',t:'Low-Light Image Enhancement with Normalizing Flow',
+   a:'Yufei Wang, Renjie Wan, Wenhan Yang, Haoliang Li, Lap-Pui Chau, Alex C. Kot',v:'AAAI',
+   l:[{l:'Project',u:'https://wyf0912.github.io/LLFlow/'}]},
+
+  /* ===== 2021 ===== */
+  {y:2021,topic:'vision',t:'Benchmarking the Robustness of Spatial-Temporal Models Against Corruptions',
+   a:'Chenyu Yi, Siyuan Yang, Haoliang Li, Yap-Peng Tan, Alex C. Kot',v:'NeurIPS',
+   l:[{l:'Code',u:'https://github.com/Newbeeyoung/Video-Corruption-Robustness'}]},
+  {y:2021,topic:'fas',t:'Asymmetric Modality Translation For Face Presentation Attack Detection',
+   a:'Zhi Li, Haoliang Li, Xin Luo, Yongjian Hu, Kwok-Yan Lam, Alex C. Kot',v:'IEEE Transactions on Multimedia'},
+  {y:2021,topic:'dg',t:'Embracing the Dark Knowledge: Domain Generalization Using Regularized Knowledge Distillation',
+   a:'Yufei Wang, Haoliang Li, Lap-Pui Chau, Alex C. Kot',v:'ACM MM'},
+  {y:2021,topic:'vision',t:'No-Reference Screen Content Image Quality Assessment With Unsupervised Domain Adaptation',
+   a:'Baoliang Chen, Haoliang Li, Hongfei Fan, Shiqi Wang',v:'IEEE Transactions on Image Processing'},
+  {y:2021,topic:'fas',t:'Appearance Matters, So Does Audio: Revealing the Hidden Face via Cross-Modality Transfer',
+   a:'Chenqi Kong, Baoliang Chen, Wenhan Yang, Haoliang Li, Peilin Chen, Shiqi Wang',v:'IEEE Transactions on Circuits and Systems for Video Technology'},
+  {y:2021,topic:'fas',t:'Camera Invariant Feature Learning for Generalized Face Anti-spoofing',
+   a:'Baoliang Chen, Wenhan Yang, Haoliang Li, Shiqi Wang, Sam Kwong',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2021,topic:'fas',t:'DRL-FAS: A Novel Framework Based on Deep Reinforcement Learning for Face Anti-Spoofing',
+   a:'Rizhao Cai, Haoliang Li, Shiqi Wang, Changsheng Chen, Alex C. Kot',v:'IEEE Transactions on Information Forensics and Security'},
+
+  /* ===== 2020 ===== */
+  {y:2020,topic:'vision',t:'CoRRN: Cooperative Reflection Removal Network',
+   a:'Renjie Wan, Boxin Shi, Haoliang Li, Ling-Yu Duan, Ah-Hwee Tan, Alex C. Kot',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence',
+   l:[{l:'Code',u:'https://github.com/wanrenjie/CoRRN'},{l:'Dataset',u:'https://entuedu-my.sharepoint.com/:u:/g/personal/rjwan_staff_main_ntu_edu_sg/EZFrLBc3aTdLm3IpOoHgdWQBrkXiJXhBRUwM5wZg4UjFcA?e=hJmRts'}]},
+  {y:2020,topic:'medical',t:'Domain Generalization for Medical Imaging Classification with Linear-Dependency Regularization',
+   a:'Haoliang Li, Yufei Wang, Renjie Wan, Shiqi Wang, Tie-qiang Li, Alex C. Kot',v:'NeurIPS'},
+  {y:2020,topic:'dg',t:'Heterogeneous Domain Generalization via Domain Mixup',
+   a:'Yufei Wang, Haoliang Li, Alex C. Kot',v:'ICASSP'},
+  {y:2020,topic:'fas',t:'Unseen Face Presentation Attack Detection with Hypersphere Loss',
+   a:'Zhi Li, Haoliang Li, Kwok-Yan Lam, Alex C. Kot',v:'ICASSP'},
+  {y:2020,topic:'dg',t:'GMFAD: Towards Generalized Visual Recognition via Multi-Layer Feature Alignment and Disentanglement',
+   a:'Haoliang Li, Shiqi Wang, Renjie Wan, Alex C. Kot',v:'IEEE Transactions on Pattern Analysis and Machine Intelligence'},
+  {y:2020,topic:'dg',t:'Unsupervised Domain Adaptation in the Wild via Disentangling Representation Learning',
+   a:'Haoliang Li, Renjie Wan, Shiqi Wang, Alex C. Kot',v:'International Journal of Computer Vision'},
+  {y:2020,topic:'dg',t:'Heterogeneous Domain Adaptation via Nonlinear Matrix Factorization',
+   a:'Haoliang Li, Sinno Jialin Pan, Shiqi Wang, Alex C. Kot',v:'IEEE Transactions on Neural Networks and Learning Systems'},
+  {y:2020,topic:'fas',t:'Face Anti-spoofing with Deep Neural Network Distillation',
+   a:'Haoliang Li, Shiqi Wang, Peisong He, Anderson Rocha',v:'IEEE Journal of Selected Topics in Signal Processing'},
+  {y:2020,topic:'vision',t:'Face Image Reflection Removal',
+   a:'Renjie Wan, Boxin Shi, Haoliang Li, Ling-Yu Duan, Alex C. Kot',v:'International Journal of Computer Vision'},
+  {y:2020,topic:'forensics',t:'Frame-wise Detection of Double HEVC Compression by Learning Deep Spatio-temporal Representations in Compression Domain',
+   a:'Peisong He, Haoliang Li, Hongxia Wang, Shiqi Wang, Xinghao Jiang, Ruimei Zhang',v:'IEEE Transactions on Multimedia'},
+  {y:2020,topic:'vision',t:'Reflection Scene Separation from a Single Image',
+   a:'Renjie Wan, Boxin Shi, Haoliang Li, Ling-Yu Duan, Alex C. Kot',v:'CVPR'},
+  {y:2020,topic:'dg',t:'Discovering and Incorporating Latent Target-Domains for Domain Adaptation',
+   a:'Haoliang Li, Wen Li, Shiqi Wang',v:'Pattern Recognition'},
+
+  /* ===== 2019 ===== */
+  {y:2019,topic:'dg',t:'Heterogeneous Transfer Learning via Deep Matrix Completion with Adversarial Kernel Embedding',
+   a:'Haoliang Li, Sinno Jialin Pan, Renjie Wan, Alex C. Kot',v:'AAAI'},
+  {y:2019,topic:'forensics',t:'Exposing Fake Bitrate Videos Using Hybrid Deep-learning Network from Recompression Error',
+   a:'Peisong He, Haoliang Li, Bin Li, Hongxia Wang, Liang Liu',v:'IEEE Transactions on Circuits and Systems for Video Technology'},
+
+  /* ===== 2018 ===== */
+  {y:2018,topic:'dg',t:'Multi-Task Mid-Level Feature Alignment Network for Unsupervised Cross-Dataset Person Re-Identification',
+   a:'Shan Lin, Haoliang Li, Chang-Tsun Li, Alex C. Kot',v:'BMVC'},
+  {y:2018,topic:'dg',t:'Domain Generalization with Adversarial Feature Learning',
+   a:'Haoliang Li, Sinno Jialin Pan, Shiqi Wang, Alex C. Kot',v:'CVPR'},
+  {y:2018,topic:'fas',t:'Learning Generalized Deep Feature Representation for Face Anti-Spoofing',
+   a:'Haoliang Li, Peisong He, Shiqi Wang, Anderson Rocha, Xinghao Jiang, Alex C. Kot',v:'IEEE Transactions on Information Forensics and Security'},
+  {y:2018,topic:'fas',t:'Unsupervised Domain Adaptation for Face Anti-spoofing',
+   a:'Haoliang Li, Wen Li, Hong Cao, Shiqi Wang, Feiyue Huang, Alex C. Kot',v:'IEEE Transactions on Information Forensics and Security'},
+];
+
+/* ---------- Filter bar ---------- */
+const filterBar = document.getElementById('filterBar');
+function mkBtn(key,label,count,active){
+  const b = document.createElement('button');
+  b.className = 'fbtn'+(active?' active':'');
+  b.dataset.f = key;
+  b.innerHTML = `${label} <span class="cnt">${count}</span>`;
+  return b;
+}
+filterBar.appendChild(mkBtn('all','All',PUBS.length,true));
+TOPICS.forEach(t=>{
+  const c = PUBS.filter(p=>p.topic===t.k).length;
+  if(c) filterBar.appendChild(mkBtn(t.k,t.label,c,false));
+});
+let current = 'all';
+filterBar.addEventListener('click',e=>{
+  const b = e.target.closest('.fbtn'); if(!b) return;
+  current = b.dataset.f;
+  filterBar.querySelectorAll('.fbtn').forEach(x=>x.classList.toggle('active', x===b));
+  render();
+});
+
+/* ---------- Render ---------- */
+function row(p){
+  const authors = p.a.replace(/Haoliang Li/g,'<strong class="me">Haoliang Li</strong>');
+  const honor = p.h ? `<span class="pub-note">(${p.h})</span>` : '';
+  let links = '';
+  if(p.l && p.l.length) links = '<span class="pub-links">' + p.l.map(x=>`<a href="${x.u}" target="_blank" rel="noopener">${x.l}</a>`).join(' · ') + '</span>';
+  return `<div class="pub">
+    <div class="pub-title">${p.t}</div>
+    <div class="pub-authors">${authors}</div>
+    <div class="pub-meta">
+      <span class="pub-venue"><em>${p.v}</em>, ${p.y}</span>
+      <span class="tag">${labelOf(p.topic)}</span>
+      ${honor}
+      ${links}
+    </div>
+  </div>`;
+}
+function render(){
+  const years = [...new Set(PUBS.map(p=>p.y))].sort((a,b)=>b-a);
+  let out = '', shown = 0;
+  years.forEach(y=>{
+    const items = PUBS.filter(p=>p.y===y && (current==='all'||p.topic===current));
+    if(!items.length) return;
+    shown += items.length;
+    out += `<div class="year-block">
+      <div class="year-head"><span class="year-num">${y}</span><span class="year-rule"></span></div>
+      ${items.map(row).join('')}
+    </div>`;
+  });
+  document.getElementById('pubs').innerHTML = shown ? out : '<div class="empty">No publications in this topic.</div>';
+}
+render();
+</script>
+</body>
+</html>
